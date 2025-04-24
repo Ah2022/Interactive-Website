@@ -91,13 +91,13 @@ export const mdrGameProject = {
     description: 'The "Innie" perspective focuses on office puzzles, memory challenges, and workplace dynamics within the mysterious Lumon Industries.',
     tags: ['Puzzle Mechanics', 'Memory Games', 'Office Simulation', 'Character Interaction'],
     projectUrl: '#',
-    animationType: 'game'
+    animationType: 'game' as const // Explicitly set to a valid type
   },
   rightContent: {
     description: 'The "Outie" perspective explores personal life, relationships, and the mystery of what happens during work hours, with decisions affecting the Innie\'s experience.',
     tags: ['Narrative Choices', 'Relationship Building', 'Mystery Solving', 'Consequence System'],
     projectUrl: '#',
-    animationType: 'game'
+    animationType: 'game' as const // Explicitly set to a valid type
   },
   leftLabel: 'Innie',
   rightLabel: 'Outie'
@@ -167,14 +167,13 @@ export const skills = [
 ];
 
 export const personalInfo = {
-  name: 'Alex Morgan',
+  name: 'Ahmed Hisham',
   title: 'Software Engineer & Creative Developer',
   bio: 'I\'m a software engineer with a passion for creating engaging digital experiences that combine technical excellence with creative design. With over 5 years of experience in full-stack development, I specialize in building interactive web applications, mobile apps, and games that push the boundaries of what\'s possible on the web.',
-  location: 'San Francisco, CA',
-  email: 'contact@example.com',
+  location: 'Cairo, Egypt',
+  email: 'ahmed.hisham2000.ah@gmail.com',
   socialLinks: {
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com'
+    github: 'https://github.com/ah2022',
+    linkedin: 'https://linkedin.com/ahmed_hisham26',
   }
 };

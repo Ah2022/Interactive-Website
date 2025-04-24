@@ -4,10 +4,26 @@
 
 [build.environment]
   NODE_VERSION = "18.x"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
+  status = 200
+  force = false
+  conditions = {Role = ["anonymous"]}
+
+[[redirects]]
+  from = "/_next/*"
+  to = "/_next/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/api/:splat"
   status = 200
 
 [[headers]]

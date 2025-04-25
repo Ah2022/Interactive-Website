@@ -175,5 +175,6 @@ export const personalInfo = {
   socialLinks: {
     github: 'https://github.com/ah2022',
     linkedin: 'https://linkedin.com/ahmed_hisham26',
+    twitter: 'https://twitter.com/ahmed_hisham26'
   }
 };

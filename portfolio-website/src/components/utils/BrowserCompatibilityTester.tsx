@@ -2,6 +2,13 @@
 
 import { useEffect } from 'react';
 
+// Extend Window interface to include our custom property
+declare global {
+  interface Window {
+    __BROWSER_COMPATIBILITY__?: any;
+  }
+}
+
 // This component adds browser compatibility testing
 export default function BrowserCompatibilityTester() {
   useEffect(() => {

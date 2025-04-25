@@ -1,5 +1,14 @@
 // This file contains utility functions for performance optimization
 
+// Define interface for web vitals metric
+interface WebVitalMetric {
+  value: number;
+  id: string;
+  name: string;
+  delta?: number;
+  entries?: any[];
+}
+
 /**
  * Defers non-critical JavaScript execution
  * @param callback - Function to execute
@@ -7,7 +16,7 @@
  */
 export const deferExecution = (callback: () => void, delay: number = 1000): void => {
   if (typeof window === 'undefined') return;
-  
+
   setTimeout(() => {
     if (document.readyState === 'complete') {
       callback();
@@ -22,34 +31,34 @@ export const deferExecution = (callback: () => void, delay: number = 1000): void
  */
 export const monitorWebVitals = (): void => {
   if (typeof window === 'undefined') return;
-  
+
   // Check if the Web Vitals API is available
   if ('web-vitals' in window) {
     try {
       // @ts-ignore - Web Vitals API
       const { getCLS, getFID, getLCP, getFCP, getTTFB } = window['web-vitals'];
-      
-      getCLS(metric => {
+
+      getCLS((metric: WebVitalMetric) => {
         console.log('CLS:', metric.value);
         // In production, send to analytics
       });
-      
-      getFID(metric => {
+
+      getFID((metric: WebVitalMetric) => {
         console.log('FID:', metric.value);
         // In production, send to analytics
       });
-      
-      getLCP(metric => {
+
+      getLCP((metric: WebVitalMetric) => {
         console.log('LCP:', metric.value);
         // In production, send to analytics
       });
-      
-      getFCP(metric => {
+
+      getFCP((metric: WebVitalMetric) => {
         console.log('FCP:', metric.value);
         // In production, send to analytics
       });
-      
-      getTTFB(metric => {
+
+      getTTFB((metric: WebVitalMetric) => {
         console.log('TTFB:', metric.value);
         // In production, send to analytics
       });
@@ -85,12 +94,12 @@ export const debounce = <T extends (...args: any[]) => any>(
   wait: number = 100
 ): ((...args: Parameters<T>) => void) => {
   let timeout: NodeJS.Timeout | null = null;
-  
+
   return (...args: Parameters<T>): void => {
     if (timeout) {
       clearTimeout(timeout);
     }
-    
+
     timeout = setTimeout(() => {
       func(...args);
     }, wait);
@@ -108,7 +117,7 @@ export const throttle = <T extends (...args: any[]) => any>(
   limit: number = 100
 ): ((...args: Parameters<T>) => void) => {
   let inThrottle: boolean = false;
-  
+
   return (...args: Parameters<T>): void => {
     if (!inThrottle) {
       func(...args);
@@ -133,7 +142,7 @@ export const checkBrowserSupport = (): Record<string, boolean> => {
       lazyLoading: false
     };
   }
-  
+
   return {
     webp: 'createImageBitmap' in window && 'HTMLCanvasElement' in window,
     webgl: (() => {

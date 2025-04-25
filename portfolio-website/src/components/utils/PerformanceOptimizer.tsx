@@ -25,7 +25,7 @@ export default function PerformanceOptimizer() {
       threshold: 0.1
     };
 
-    const handleIntersect = (entries, observer) => {
+    const handleIntersect = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
@@ -56,7 +56,7 @@ export default function PerformanceOptimizer() {
           const perfData = window.performance.timing;
           const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
           console.log('Page load time:', pageLoadTime, 'ms');
-          
+
           // Report to analytics (placeholder)
           if (window.requestIdleCallback) {
             requestIdleCallback(() => {

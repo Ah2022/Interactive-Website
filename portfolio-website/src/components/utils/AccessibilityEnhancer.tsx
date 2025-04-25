@@ -44,15 +44,15 @@ export default function AccessibilityEnhancer() {
     const checkHeadingHierarchy = () => {
       const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'));
       let previousLevel = 0;
-      
+
       headings.forEach(heading => {
         const level = parseInt(heading.tagName.substring(1));
-        
+
         // Check for skipped heading levels
         if (level - previousLevel > 1 && previousLevel !== 0) {
           console.warn(`Accessibility issue: Heading level skipped from h${previousLevel} to h${level}`);
         }
-        
+
         previousLevel = level;
       });
     };
@@ -74,9 +74,10 @@ export default function AccessibilityEnhancer() {
         if (!el.getAttribute('tabindex')) {
           el.setAttribute('tabindex', '0');
         }
-        
-        el.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+
+        el.addEventListener('keydown', (e: Event) => {
+          const keyEvent = e as KeyboardEvent;
+          if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
             e.preventDefault();
             (el as HTMLElement).click();
           }
@@ -100,17 +101,17 @@ export default function AccessibilityEnhancer() {
         z-index: 100;
         transition: top 0.2s;
       `;
-      
+
       skipLink.addEventListener('focus', () => {
         skipLink.style.top = '0';
       });
-      
+
       skipLink.addEventListener('blur', () => {
         skipLink.style.top = '-40px';
       });
-      
+
       document.body.insertBefore(skipLink, document.body.firstChild);
-      
+
       // Add id to main content if not present
       const main = document.querySelector('main');
       if (main && !main.id) {
@@ -130,7 +131,7 @@ export default function AccessibilityEnhancer() {
     checkHeadingHierarchy();
     enhanceKeyboardNavigation();
     addSkipToContentLink();
-    
+
     // Optional contrast mode (could be toggled by user)
     // checkColorContrast();
 

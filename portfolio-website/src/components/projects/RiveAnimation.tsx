@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useRive, Layout, Fit, Alignment } from '@rive-app/react-canvas';
+import { useRive, Layout, Fit, Alignment, StateMachineInputType } from '@rive-app/react-canvas';
 
 interface RiveAnimationProps {
   src: string;
@@ -28,7 +28,7 @@ const RiveAnimation = ({
 }: RiveAnimationProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Initialize Rive
   const { RiveComponent, rive } = useRive({
     src,
@@ -42,26 +42,23 @@ const RiveAnimation = ({
     }),
     onLoad: () => {
       console.log('Rive animation loaded successfully');
-    },
-    onError: (err) => {
-      console.error('Error loading Rive animation:', err);
     }
   });
 
   // Handle hover state
   useEffect(() => {
     if (!rive || !stateMachine) return;
-    
+
     const inputs = rive.stateMachineInputs(stateMachine);
     if (!inputs) return;
-    
+
     // Look for common input names that might control hover state
     const hoverInput = 
       inputs.find(input => input.name === 'hover') || 
       inputs.find(input => input.name === 'isHover') ||
       inputs.find(input => input.name === 'isHovering');
-    
-    if (hoverInput && hoverInput.type === 'boolean') {
+
+    if (hoverInput && hoverInput.type === StateMachineInputType.Boolean) {
       hoverInput.value = isHovered;
     }
   }, [rive, stateMachine, isHovered]);
@@ -79,22 +76,22 @@ const RiveAnimation = ({
 
   const handleClick = () => {
     if (!rive || !stateMachine) return;
-    
+
     const inputs = rive.stateMachineInputs(stateMachine);
     if (!inputs) return;
-    
+
     // Look for common input names that might trigger click animations
     const clickInput = 
       inputs.find(input => input.name === 'click') || 
       inputs.find(input => input.name === 'isClick') ||
       inputs.find(input => input.name === 'trigger');
-    
-    if (clickInput && clickInput.type === 'boolean') {
+
+    if (clickInput && clickInput.type === StateMachineInputType.Boolean) {
       clickInput.fire();
-    } else if (clickInput && clickInput.type === 'number') {
+    } else if (clickInput && clickInput.type === StateMachineInputType.Number) {
       clickInput.value = 1;
     }
-    
+
     if (onClick) onClick();
   };
 

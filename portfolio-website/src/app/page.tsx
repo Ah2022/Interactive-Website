@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Layout from '@/components/layout/Layout';
+import { useState } from 'react';
 import HeroSection from '@/components/layout/HeroSection';
 import Section from '@/components/layout/Section';
 import ProjectCard from '@/components/projects/ProjectCard';
@@ -12,10 +11,10 @@ import Button from '@/components/ui/Button';
 import { projects, mdrGameProject, skills, personalInfo } from '@/data/projectsData';
 
 export default function Home() {
-  const [featuredProjects, setFeaturedProjects] = useState(projects.filter(project => project.featured));
+  const [featuredProjects] = useState(projects.filter(project => project.featured));
   
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <HeroSection 
         title={`Hi, I'm ${personalInfo.name}`}
@@ -186,6 +185,6 @@ export default function Home() {
           </Button>
         </div>
       </Section>
-    </Layout>
+    </>
   );
 }

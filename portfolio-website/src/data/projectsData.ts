@@ -21,7 +21,7 @@ export const projects: Project[] = [
     tags: ['Unity', 'C#', 'Narrative Design', 'Puzzle Mechanics', 'Dual Gameplay'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
-    riveAnimationSrc: '/window.svg',
+    riveAnimationSrc: '/animations/window.svg',
     animationType: 'game',
     featured: true,
     category: 'game'
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     tags: ['Python', 'TensorFlow', 'Time Series Analysis', 'Predictive Maintenance', 'IoT'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
-    riveAnimationSrc: '/globe.svg',
+    riveAnimationSrc: '/animations/globe.svg',
     animationType: 'ai',
     featured: true,
     category: 'ai'
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     tags: ['React', 'D3.js', 'TypeScript', 'Responsive Design', 'Data Visualization'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
-    riveAnimationSrc: '/file.svg',
+    riveAnimationSrc: '/animations/file.svg',
     animationType: 'dataViz',
     featured: true,
     category: 'frontend'
@@ -84,7 +84,7 @@ export const projects: Project[] = [
     tags: ['Go', 'Kubernetes', 'Docker', 'Microservices', 'API Design'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
-    riveAnimationSrc: '/next.svg',
+    riveAnimationSrc: '/animations/next.svg',
     animationType: 'webApp',
     category: 'backend'
   }

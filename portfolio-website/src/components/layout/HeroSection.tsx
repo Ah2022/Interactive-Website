@@ -22,7 +22,7 @@ const HeroSection = ({
 }: HeroSectionProps) => {
   const controls = useAnimation();
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -34,7 +34,7 @@ const HeroSection = ({
       }
     }
   };
-  
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -63,21 +63,21 @@ const HeroSection = ({
   // Mouse move effect for 3D geometry
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    
+
     const geometry = containerRef.current.querySelector('.geometry-container');
     if (!geometry) return;
-    
+
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     // Calculate rotation based on mouse position
     const rotateY = ((x - centerX) / centerX) * 10; // Max 10 degrees
     const rotateX = ((centerY - y) / centerY) * 10; // Max 10 degrees
-    
+
     // Apply the rotation
     (geometry as HTMLElement).style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
   };
@@ -97,86 +97,74 @@ const HeroSection = ({
   return (
     <motion.div
       ref={containerRef}
-      className={`min-h-[80vh] flex flex-col md:flex-row items-center ${className}`}
+      className={`relative pt-16 overflow-hidden ${className}`}
       variants={containerVariants}
       initial="hidden"
       animate={controls}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
-      {/* Left side - Text content */}
-      <motion.div className="w-full md:w-1/2 p-6 md:p-12">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+          alt="Technology Background" 
+          className="w-full h-full object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-32 pb-20 min-h-[600px] flex flex-col justify-center">
+        <motion.div 
+          className="inline-block bg-white bg-opacity-10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 self-start"
+          variants={itemVariants}
+        >
+          <p className="text-white flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Software Engineer & Creative Developer
+          </p>
+        </motion.div>
+
         <motion.h1 
-          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+          className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6 max-w-3xl"
           variants={itemVariants}
         >
           {title}
         </motion.h1>
-        
+
         <motion.p 
-          className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-6"
+          className="text-xl text-white mb-10 max-w-2xl"
           variants={itemVariants}
         >
           {subtitle}
         </motion.p>
-        
+
         <motion.div 
-          className="mb-8"
+          className="flex flex-wrap gap-4"
           variants={itemVariants}
         >
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">Specializing in:</p>
-          <div className="flex flex-wrap gap-2">
-            {specialties.map((specialty, index) => (
-              <span 
-                key={index}
-                className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium"
-              >
-                {specialty}
-              </span>
-            ))}
-          </div>
+          <a
+            href={ctaLink}
+            className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center whitespace-nowrap cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            {ctaText}
+          </a>
+          <a
+            href="/projects"
+            className="bg-white text-gray-900 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors flex items-center whitespace-nowrap cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            Discover Projects
+          </a>
         </motion.div>
-        
-        <motion.a
-          href={ctaLink}
-          className="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-md hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
-          variants={itemVariants}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {ctaText}
-        </motion.a>
-      </motion.div>
-      
-      {/* Right side - 3D Geometry */}
-      <motion.div 
-        className="w-full md:w-1/2 p-6 md:p-12 flex justify-center items-center"
-        variants={itemVariants}
-      >
-        <motion.div 
-          className="geometry-container w-full h-64 md:h-96 relative perspective-800 transition-transform duration-300"
-          variants={geometryVariants}
-        >
-          {/* 3D Geometry placeholder - will be replaced with actual 3D elements or Rive animation */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-48 h-48 md:w-64 md:h-64 relative">
-              {/* Cube */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-lg transform rotate-45 opacity-80"></div>
-              
-              {/* Sphere */}
-              <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full shadow-lg"></div>
-              
-              {/* Glowing effect */}
-              <div className="absolute inset-0 bg-blue-500 rounded-2xl filter blur-xl opacity-20 animate-pulse"></div>
-              
-              {/* Grid lines */}
-              <div className="absolute inset-0 border-2 border-white border-opacity-20 rounded-2xl"></div>
-              <div className="absolute inset-0 border-t-2 border-l-2 border-white border-opacity-10 rounded-2xl transform rotate-45"></div>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-      
+      </div>
+
       {/* Scroll indicator */}
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"

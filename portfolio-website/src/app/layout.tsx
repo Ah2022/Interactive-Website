@@ -1,10 +1,15 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import Layout from '@/components/layout/Layout';
 
 export const metadata: Metadata = {
-  title: 'Interactive Portfolio | Software Engineer',
-  description: 'Portfolio website showcasing software engineering projects with interactive Rive animations',
+  title: 'Ahmed Hisham | Software Engineer',
+  description: 'Portfolio website of Ahmed Hisham, a software engineer and creative developer',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
   themeColor: '#3b82f6',
 };
 
@@ -16,9 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body>
-        <Layout>
-          {children}
-        </Layout>
+        {children}
       </body>
     </html>
   );

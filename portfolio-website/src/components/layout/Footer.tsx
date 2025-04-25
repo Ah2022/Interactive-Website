@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
   const socialLinks = [
-    { name: 'GitHub', url: 'https://github.com', icon: 'github' },
-    { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'linkedin' },
-    { name: 'Twitter', url: 'https://twitter.com', icon: 'twitter' }
+    { name: 'GitHub', url: 'https://github.com/Ah2022', icon: 'github' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ahmed-hisham26/', icon: 'linkedin' },
+    { name: 'Twitter', url: 'https://twitter.com/ahmed_hisham26', icon: 'twitter' }
   ];
 
   // Animation variants
@@ -68,47 +68,104 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900 py-12 mt-20">
-      <div className="container mx-auto px-4">
+    <footer className="bg-gray-800 text-white py-12">
+      <div className="max-w-7xl mx-auto px-4">
         <motion.div 
-          className="flex flex-col md:flex-row justify-between items-center"
+          className="grid grid-cols-1 md:grid-cols-4 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <motion.div variants={itemVariants} className="mb-6 md:mb-0">
-            <Link href="/" className="text-xl font-bold">
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Portfolio
-              </span>
+          <motion.div variants={itemVariants}>
+            <Link href="/" className="text-white font-bold text-2xl flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <span>Portfolio</span>
             </Link>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Creating engaging digital experiences
+            <p className="mt-4 text-gray-400">
+              Revolutionizing digital experiences through innovative AI solutions since 2020.
             </p>
-          </motion.div>
-          
-          <motion.div variants={itemVariants} className="flex flex-col items-center md:items-end">
-            <div className="flex space-x-4 mb-4">
+            <div className="flex space-x-4 mt-6">
               {socialLinks.map((link) => (
                 <a 
                   key={link.name}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-300"
+                  className="text-gray-400 hover:text-white transition-colors cursor-pointer"
                   aria-label={link.name}
                 >
                   {renderSocialIcon(link.icon)}
                 </a>
               ))}
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              © {currentYear} Portfolio. All rights reserved.
-            </p>
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors cursor-pointer">AI Strategy</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Custom AI Development</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors cursor-pointer">AI Integration</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Data Analytics</a></li>
+            </ul>
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors cursor-pointer">About Us</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Case Studies</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Careers</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Blog</a></li>
+            </ul>
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <ul className="space-y-2">
+              <li className="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mt-1 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span className="text-gray-400">123 Innovation Drive, Tech City, TC 10101</span>
+              </li>
+              <li className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a href="mailto:info@example.com" className="text-gray-400 hover:text-white transition-colors cursor-pointer">info@example.com</a>
+              </li>
+              <li className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <a href="tel:+1234567890" className="text-gray-400 hover:text-white transition-colors cursor-pointer">+1 (234) 567-890</a>
+              </li>
+            </ul>
           </motion.div>
         </motion.div>
-        
+
+        <motion.div 
+          className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <p className="text-gray-400 text-sm">
+            © {currentYear} Portfolio. All rights reserved.
+          </p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer">Privacy Policy</a>
+            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer">Terms of Service</a>
+            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors cursor-pointer">Cookie Policy</a>
+          </div>
+        </motion.div>
+
         <motion.div 
           className="mt-8 flex justify-center"
           variants={itemVariants}
@@ -118,12 +175,12 @@ const Footer = () => {
         >
           <button 
             onClick={scrollToTop}
-            className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 group"
+            className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors duration-300"
             aria-label="Scroll to top"
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className="h-5 w-5 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" 
+              className="h-5 w-5 text-gray-400" 
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"

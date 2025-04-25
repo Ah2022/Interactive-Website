@@ -21,6 +21,7 @@ export const projects: Project[] = [
     tags: ['Unity', 'C#', 'Narrative Design', 'Puzzle Mechanics', 'Dual Gameplay'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
+    riveAnimationSrc: '/window.svg',
     animationType: 'game',
     featured: true,
     category: 'game'
@@ -33,6 +34,7 @@ export const projects: Project[] = [
     tags: ['Python', 'TensorFlow', 'Time Series Analysis', 'Predictive Maintenance', 'IoT'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
+    riveAnimationSrc: '/globe.svg',
     animationType: 'ai',
     featured: true,
     category: 'ai'
@@ -45,6 +47,7 @@ export const projects: Project[] = [
     tags: ['React', 'D3.js', 'TypeScript', 'Responsive Design', 'Data Visualization'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
+    riveAnimationSrc: '/file.svg',
     animationType: 'dataViz',
     featured: true,
     category: 'frontend'
@@ -57,6 +60,7 @@ export const projects: Project[] = [
     tags: ['React Native', 'Firebase', 'Health APIs', 'Cross-platform', 'User Experience'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
+    riveAnimationSrc: '/assets/logo.svg',
     animationType: 'mobileApp',
     category: 'mobile'
   },
@@ -68,6 +72,7 @@ export const projects: Project[] = [
     tags: ['Node.js', 'Express', 'MongoDB', 'React', 'Payment Integration'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
+    riveAnimationSrc: '/assets/profile.svg',
     animationType: 'webApp',
     category: 'fullstack'
   },
@@ -79,6 +84,7 @@ export const projects: Project[] = [
     tags: ['Go', 'Kubernetes', 'Docker', 'Microservices', 'API Design'],
     projectUrl: '#',
     githubUrl: 'https://github.com',
+    riveAnimationSrc: '/next.svg',
     animationType: 'webApp',
     category: 'backend'
   }
@@ -173,8 +179,8 @@ export const personalInfo = {
   location: 'Cairo, Egypt',
   email: 'ahmed.hisham2000.ah@gmail.com',
   socialLinks: {
-    github: 'https://github.com/ah2022',
-    linkedin: 'https://linkedin.com/ahmed_hisham26',
+    github: 'https://github.com/Ah2022',
+    linkedin: 'https://www.linkedin.com/in/ahmed-hisham26/',
     twitter: 'https://twitter.com/ahmed_hisham26'
   }
 };

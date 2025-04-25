@@ -5,6 +5,8 @@ const nextConfig = {
   images: {
     unoptimized: true, // Required for static export
   },
+  assetPrefix: './', // Add this to ensure assets are loaded with relative paths
+  basePath: '', // Empty base path for root deployment
 };
 
 module.exports = nextConfig;

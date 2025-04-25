@@ -5,6 +5,14 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    // Add commonly used classes that might be dynamically generated
+    'hidden', 'flex', 'block', 'grid',
+    'space-x-4', 'space-x-8', 'space-y-4', 'space-y-8',
+    'gap-2', 'gap-4', 'gap-8',
+    'p-4', 'm-4', 'px-2', 'py-1',
+    // Add more as needed
+  ],
   theme: {
     extend: {
       colors: {

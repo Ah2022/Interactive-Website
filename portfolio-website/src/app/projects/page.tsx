@@ -1,170 +1,81 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Layout from '@/components/layout/Layout';
-import Section from '@/components/layout/Section';
-import ProjectCard from '@/components/projects/ProjectCard';
-import SplitProject from '@/components/projects/SplitProject';
-import ProjectsGrid from '@/components/projects/ProjectsGrid';
-import { projects, mdrGameProject } from '@/data/projectsData';
 
 export default function Projects() {
-  const [categories, setCategories] = useState<string[]>([]);
-  
-  // Extract unique categories from projects
-  useEffect(() => {
-    const uniqueCategories = Array.from(new Set(projects.map(project => project.category)));
-    setCategories(uniqueCategories as string[]);
-  }, []);
-  
   return (
     <Layout>
-      {/* Header */}
-      <Section className="mb-12 pt-24">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            My Projects
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            A collection of my work across web, mobile, games, and AI applications.
-            Each project represents a unique challenge and solution.
-          </p>
-        </div>
-      </Section>
-      
-      {/* Featured Project - MDR Game */}
-      <Section className="mb-20">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-          Featured Project
-        </h2>
-        
-        <SplitProject 
-          title={mdrGameProject.title}
-          leftContent={mdrGameProject.leftContent}
-          rightContent={mdrGameProject.rightContent}
-          leftLabel={mdrGameProject.leftLabel}
-          rightLabel={mdrGameProject.rightLabel}
-        />
-      </Section>
-      
-      {/* All Projects */}
-      <Section className="mb-20">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-          All Projects
-        </h2>
-        
-        <ProjectsGrid filters={categories.map(cat => cat.charAt(0).toUpperCase() + cat.slice(1))}>
-          {projects.filter(project => project.id !== 'mdr-game').map((project) => (
-            <ProjectCard 
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              tags={project.tags}
-              projectUrl={project.projectUrl}
-              riveAnimationSrc={project.riveAnimationSrc}
-              animationType={project.animationType}
-            />
-          ))}
-        </ProjectsGrid>
-      </Section>
-      
-      {/* Project Process */}
-      <Section className="mb-20 bg-gray-50 dark:bg-gray-900 py-20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-            My Project Process
-          </h2>
-          
-          <div className="space-y-12">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-1/4 flex justify-center">
-                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-300 text-2xl font-bold">
-                  1
-                </div>
-              </div>
-              <div className="md:w-3/4">
-                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                  Discovery & Research
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Every project begins with understanding the core problem and researching potential solutions. 
-                  I analyze requirements, study user needs, and explore technical possibilities to establish a solid foundation.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-1/4 flex justify-center">
-                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center text-purple-600 dark:text-purple-300 text-2xl font-bold">
-                  2
-                </div>
-              </div>
-              <div className="md:w-3/4">
-                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                  Design & Prototyping
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  With a clear understanding of the goals, I create wireframes and interactive prototypes to visualize the solution.
-                  This iterative process helps refine the user experience and interface before development begins.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-1/4 flex justify-center">
-                <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center text-green-600 dark:text-green-300 text-2xl font-bold">
-                  3
-                </div>
-              </div>
-              <div className="md:w-3/4">
-                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                  Development & Testing
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  I build the solution using modern technologies and best practices, with a focus on clean, maintainable code.
-                  Rigorous testing ensures the final product is robust, performant, and accessible across all devices.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-1/4 flex justify-center">
-                <div className="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center text-red-600 dark:text-red-300 text-2xl font-bold">
-                  4
-                </div>
-              </div>
-              <div className="md:w-3/4">
-                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-                  Deployment & Iteration
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  After launch, I monitor performance and gather user feedback to identify opportunities for improvement.
-                  This continuous iteration process ensures the solution evolves to meet changing needs and expectations.
-                </p>
-              </div>
-            </div>
+      {/* Projects Header */}
+      <section className="py-12 bg-gray-50 dark:bg-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <motion.h1 
+              className="text-4xl md:text-5xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              My Projects
+            </motion.h1>
+            <motion.p 
+              className="text-xl mb-6 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              A collection of my work, showcasing my skills and experience in software development.
+            </motion.p>
           </div>
         </div>
-      </Section>
-      
-      {/* CTA */}
-      <Section className="mb-20">
-        <div className="text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 px-4 rounded-xl">
-          <h2 className="text-3xl font-bold mb-4">
-            Have a project in mind?
-          </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            I'm always interested in hearing about new projects and challenges.
-            Let's discuss how we can work together to bring your ideas to life.
-          </p>
-          <a 
-            href="/contact" 
-            className="inline-block px-8 py-3 bg-white text-blue-600 font-medium rounded-md hover:bg-gray-100 transition-colors duration-300"
-          >
-            Get in Touch
-          </a>
+      </section>
+
+      {/* Projects Grid */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <motion.div 
+                key={item}
+                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: item * 0.05 }}
+              >
+                <div className="h-48 bg-gray-200 dark:bg-gray-700">
+                  <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Project {item}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    A brief description of project {item} and the technologies used to build it.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="px-2 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded text-xs">React</span>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded text-xs">TypeScript</span>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded text-xs">Tailwind</span>
+                  </div>
+                  <Link 
+                    href={`/projects/${item}`}
+                    className="text-blue-600 hover:text-blue-700 font-medium flex items-center"
+                  >
+                    View Project
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </Section>
+      </section>
     </Layout>
   );
 }
